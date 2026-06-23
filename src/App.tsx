@@ -15,7 +15,6 @@ import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import AuthDialog from "./components/AuthDialog";
 import PricingModal from "./components/PricingModal";
-import TypographyLab from "./components/TypographyLab";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("hero");
@@ -129,9 +128,6 @@ export default function App() {
         onClose={() => setIsPricingOpen(false)}
         onSelectPlan={handleSelectPlan}
       />
-
-      {/* 6. Live Interactive Font Preview Panel (Testing platform) */}
-      <TypographyLab />
     </div>
   );
 }

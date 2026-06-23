@@ -1,6 +1,6 @@
 {
-  "name": "INDOS Sovereign AI",
-  "description": "Sovereign AI landing page and developer platform built in India for the world. Access, fine-tune, and deploy open-source models with high performance.",
+  "name": "Indos - Intelligence on tap",
+  "description": "Sovereign AI landing page and developer platform built in India for the world. Access, integrate, and deploy open-source models with high performance.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

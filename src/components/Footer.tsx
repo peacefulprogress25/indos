@@ -86,8 +86,8 @@ export default function Footer({ onNavClick, onOpenAuth }: FooterProps) {
               </span>
               S
             </span>
-            <p className="text-gray-400 text-xs md:text-sm font-sans tracking-wide leading-relaxed max-w-xs">
-              Sovereign AI. Built in India. <br /> For the world.
+            <p className="text-[#94A3B8] text-xs md:text-sm font-sans tracking-wide leading-relaxed max-w-xs">
+              Intelligence on tap
             </p>
           </div>
 
