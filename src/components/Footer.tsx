@@ -49,14 +49,14 @@ export default function Footer({ onNavClick, onOpenAuth }: FooterProps) {
           <div>
             <div className="relative inline-block mb-3">
               <h2 className="font-display text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                Build, Integrate, and <br /> Deploy Open-Source AI
-              </h2>
-              {/* Short thick orange horizontal bar under "Deploy" */}
-              <div className="w-16 h-1 bg-brand-orange mt-3 rounded-full" />
-            </div>
-            <p className="text-gray-400 font-sans text-sm md:text-base leading-relaxed tracking-wide">
-              Get production-ready access to India's sovereign AI infrastructure.
-            </p>
+                              Start building with<br />India's API for AI
+                            </h2>
+                            {/* Short thick orange horizontal bar */}
+                            <div className="w-16 h-1 bg-brand-orange mt-3 rounded-full" />
+                          </div>
+                          <p className="text-gray-400 font-sans text-sm md:text-base leading-relaxed tracking-wide">
+                            One API, 30+ models, INR pricing. Get your key and start building today.
+                          </p>
           </div>
 
           <div className="flex-shrink-0">

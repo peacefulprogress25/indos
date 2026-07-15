@@ -41,3 +41,21 @@ export interface BuilderSegment {
   title: string;
   description: string;
 }
+
+export interface StackTier {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  models: string[];
+  color: string;
+  icon: string;
+}
+
+export interface PricingModel {
+  id: string;
+  name: string;
+  category: string;
+  inputPrice: string;
+  outputPrice: string;
+}
