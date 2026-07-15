@@ -7,7 +7,6 @@ import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import IndiaStack from "./components/IndiaStack";
-import EverythingGrid from "./components/EverythingGrid";
 import WhoWeBuildFor from "./components/WhoWeBuildFor";
 import PricingSection from "./components/PricingSection";
 import WhyTeamsSwitch from "./components/WhyTeamsSwitch";
@@ -29,7 +28,7 @@ export default function App() {
   };
 
   useEffect(() => {
-    const sections = ["hero", "models", "solutions", "pricing", "faq", "why-switch", "getting-started", "features"];
+    const sections = ["hero", "models", "solutions", "pricing", "faq", "why-switch", "getting-started"];
     
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 200;
@@ -40,7 +39,7 @@ export default function App() {
           const top = el.offsetTop;
           const height = el.offsetHeight;
           if (scrollPosition >= top && scrollPosition < top + height) {
-            if (sectionId === "features" || sectionId === "getting-started") {
+            if (sectionId === "getting-started") {
               setActiveSection("docs");
             } else if (sectionId === "why-switch") {
               setActiveSection("solutions");
@@ -59,7 +58,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#060913] selection:bg-brand-orange selection:text-white" id="main-view-container">
-      {/* Header */}
       <Header 
         onNavClick={handleNavClick} 
         activeSection={activeSection}
@@ -67,42 +65,29 @@ export default function App() {
       />
 
       <main id="main-content-flow">
-        {/* Hero */}
         <Hero 
           onNavClick={handleNavClick}
           onOpenAuth={() => setIsAuthOpen(true)}
         />
 
-        {/* The India Stack (5 model tiers) */}
         <IndiaStack />
 
-        {/* Why Indos (6 features) */}
-        <EverythingGrid onOpenAuth={() => setIsAuthOpen(true)} />
-
-        {/* Who Builds on Indos (4 personas) */}
         <WhoWeBuildFor onOpenAuth={() => setIsAuthOpen(true)} />
 
-        {/* Pricing (INR per 1M tokens) */}
         <PricingSection onOpenAuth={() => setIsAuthOpen(true)} />
 
-        {/* Why Teams Switch */}
         <WhyTeamsSwitch onOpenAuth={() => setIsAuthOpen(true)} />
 
-        {/* Getting Started */}
         <GettingStarted onOpenAuth={() => setIsAuthOpen(true)} />
 
-        {/* FAQ */}
         <FAQ />
-
       </main>
 
-      {/* Footer */}
       <Footer 
         onNavClick={handleNavClick}
         onOpenAuth={() => setIsAuthOpen(true)}
       />
 
-      {/* Auth Dialog */}
       <AuthDialog 
         isOpen={isAuthOpen} 
         onClose={() => setIsAuthOpen(false)} 

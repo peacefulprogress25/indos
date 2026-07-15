@@ -1,102 +1,126 @@
-import React, { useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { BUILDER_SEGMENTS } from "../data";
+import React from "react";
+import { Building2, Terminal, Rocket, Landmark } from "lucide-react";
+import { motion } from "motion/react";
 
 interface WhoWeBuildForProps {
   onOpenAuth: () => void;
 }
 
+const personas = [
+  {
+    id: "agencies",
+    title: "AI Agencies",
+    icon: Building2,
+    color: "#FF6B00",
+    illustration: "Multi-tenant · Client routing · INR billing",
+    gradient: "from-[#FF6B00]/20 to-transparent",
+  },
+  {
+    id: "developers",
+    title: "Developers",
+    icon: Terminal,
+    color: "#3B82F6",
+    illustration: "One API · 5 tiers · OpenAI SDK",
+    gradient: "from-[#3B82F6]/20 to-transparent",
+  },
+  {
+    id: "startups",
+    title: "Startups",
+    icon: Rocket,
+    color: "#10B981",
+    illustration: "Ship fast · Scale affordably · No infra",
+    gradient: "from-[#10B981]/20 to-transparent",
+  },
+  {
+    id: "enterprises",
+    title: "Enterprises",
+    icon: Landmark,
+    color: "#8B5CF6",
+    illustration: "Sovereign infra · Compliance · SLA",
+    gradient: "from-[#8B5CF6]/20 to-transparent",
+  },
+];
+
 export default function WhoWeBuildFor({ onOpenAuth }: WhoWeBuildForProps) {
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
-
   return (
-    <section id="solutions" className="bg-white text-[#0F172A] py-20 border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-6">
-        
-        <div className="mb-14">
-          <span className="font-mono text-xs font-semibold tracking-wider text-brand-orange uppercase block mb-3">
-            Who Builds on Indos
-          </span>
-          <h2 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight text-[#0F172A]">
-            Built For AI Builders<span className="text-brand-orange">.</span>
+    <section id="solutions" className="relative bg-[#060913] text-white py-20 md:py-28 border-b border-[#1E293B]/40 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b08_1px,transparent_1px),linear-gradient(to_bottom,#1e293b08_1px,transparent_1px)] bg-[size:5rem_5rem] pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        {/* Section Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-14"
+        >
+          <h2 className="font-display text-4xl md:text-6xl font-extrabold tracking-tight text-white">
+            Built for
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="max-w-4xl relative">
-          <div className="absolute left-[34px] top-6 bottom-6 w-[2px] border-l-2 border-dashed border-gray-200 hidden md:block" />
+        {/* Persona Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {personas.map((persona, i) => {
+            const Icon = persona.icon;
+            return (
+              <motion.div
+                key={persona.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                onClick={onOpenAuth}
+                className="group relative bg-[#0B1120] border border-[#1E293B]/60 rounded-2xl p-8 cursor-pointer hover:border-[#334155] transition-all duration-300 flex flex-col items-center text-center"
+                style={{
+                  borderTopWidth: "2px",
+                  borderTopColor: `${persona.color}40`,
+                }}
+              >
+                {/* Color glow on hover */}
+                <div 
+                  className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-b ${persona.gradient}`}
+                />
 
-          <div className="space-y-4 md:space-y-0">
-            {BUILDER_SEGMENTS.map((segment, idx) => {
-              const isHovered = hoveredIdx === idx;
-              
-              return (
-                <div
-                  key={segment.id}
-                  onMouseEnter={() => setHoveredIdx(idx)}
-                  onMouseLeave={() => setHoveredIdx(null)}
-                  onClick={onOpenAuth}
-                  className="flex flex-col md:flex-row items-start md:items-center py-6 md:py-8 border-b border-gray-100 last:border-b-0 transition-colors duration-250 relative group cursor-pointer"
-                >
-                  <div className="flex items-center space-x-6 w-full md:w-auto md:mr-12 mb-3 md:mb-0 relative z-10">
-                    <div className="hidden md:flex items-center justify-center w-[70px] h-full">
-                      {idx === 0 ? (
-                        <div className={`w-4 h-4 transition-all duration-300 ${
-                          isHovered ? "bg-brand-orange rotate-45 scale-115" : "bg-brand-orange"
-                        }`} />
-                      ) : (
-                        <div className={`w-3.5 h-3.5 rounded-full border-2 transition-all duration-300 ${
-                          isHovered ? "border-brand-orange bg-brand-orange scale-115" : "border-gray-300 bg-white"
-                        }`} />
-                      )}
-                    </div>
-
-                    <span className={`font-display text-4xl md:text-5xl font-extrabold tracking-tight transition-colors duration-250 ${
-                      isHovered ? "text-brand-orange" : "text-gray-300"
-                    }`}>
-                      {segment.id}
-                    </span>
-
-                    <span className="font-display text-xl font-medium text-gray-400">
-                      +
-                    </span>
+                <div className="relative z-10 flex flex-col items-center gap-5">
+                  {/* Icon in colored circle */}
+                  <div 
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg"
+                    style={{ 
+                      backgroundColor: `${persona.color}15`,
+                      color: persona.color,
+                    }}
+                  >
+                    <Icon className="w-8 h-8" />
                   </div>
 
-                  <div className="flex-1 grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 items-center">
-                    <div className="md:col-span-4">
-                      <h3 className="font-display text-xl font-extrabold text-gray-900 group-hover:text-brand-orange transition-colors">
-                        {segment.title}
-                      </h3>
-                    </div>
+                  {/* Title */}
+                  <h3 className="font-display text-xl font-bold text-white group-hover:text-white/90 transition-colors">
+                    {persona.title}
+                  </h3>
 
-                    <div className="md:col-span-7">
-                      <p className="text-gray-500 font-sans text-sm md:text-base leading-relaxed">
-                        {segment.description}
-                      </p>
-                    </div>
-
-                    <div className="md:col-span-1 flex justify-end md:justify-center">
-                      <ArrowRight className={`w-5 h-5 transition-transform duration-300 ${
-                        isHovered 
-                          ? "text-brand-orange translate-x-2" 
-                          : "text-gray-300 group-hover:text-gray-800"
-                      }`} />
-                    </div>
+                  {/* Visual tags */}
+                  <div className="flex flex-col gap-1.5">
+                    {persona.illustration.split(" · ").map((tag, j) => (
+                      <span 
+                        key={j}
+                        className="text-xs font-mono tracking-wide px-3 py-1 rounded-full border transition-colors duration-300"
+                        style={{
+                          color: `${persona.color}cc`,
+                          borderColor: `${persona.color}30`,
+                          backgroundColor: `${persona.color}08`,
+                        }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Subtle CTA */}
-        <div className="mt-12 text-center">
-          <button
-            onClick={onOpenAuth}
-            className="text-brand-orange hover:text-[#E05600] font-sans font-semibold text-sm inline-flex items-center gap-1.5 transition-colors cursor-pointer"
-          >
-            Get your API key
-            <ArrowRight className="w-4 h-4" />
-          </button>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
