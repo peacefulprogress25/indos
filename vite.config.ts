@@ -12,11 +12,23 @@ export default defineConfig(() => {
       },
     },
     server: {
+      // Allow the public preview proxy host so the shared dev server serves it.
+      allowedHosts: ['.preview.us1.vorflux.com'],
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
       // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
+      proxy: {
+        '/api': {
+          target: 'http://localhost:8080',
+          changeOrigin: true,
+        },
+        '/v1': {
+          target: 'http://localhost:8080',
+          changeOrigin: true,
+        },
+      },
     },
   };
 });
