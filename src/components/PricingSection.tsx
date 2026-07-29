@@ -24,20 +24,20 @@ export default function PricingSection({ onOpenAuth }: PricingSectionProps) {
             <span className="text-xs text-brand-orange font-mono font-semibold tracking-wider uppercase">Pricing</span>
           </div>
           <h2 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
-            Transparent INR pricing
+            Best Price & Performance
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Pay in rupees. No dollar conversions, no forex markup, no hidden fees.
           </p>
         </motion.div>
 
-        {/* Pricing Table */}
+        {/* Pricing Table — Desktop */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="overflow-hidden rounded-2xl border border-[#1E293B]/60 bg-[#0B1120]"
+          className="hidden md:block overflow-hidden rounded-2xl border border-[#1E293B]/60 bg-[#0B1120]"
         >
           {/* Table Header */}
           <div className="grid grid-cols-4 gap-4 px-6 py-4 border-b border-[#1E293B]/40 bg-[#0E1424]">
@@ -61,6 +61,39 @@ export default function PricingSection({ onOpenAuth }: PricingSectionProps) {
               </div>
             ))}
           </div>
+        </motion.div>
+
+        {/* Pricing Cards — Mobile */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="md:hidden space-y-3"
+        >
+          {PRICING_DATA.map((model) => (
+            <div
+              key={model.id}
+              className="rounded-xl border border-[#1E293B]/60 bg-[#0B1120] p-4"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-sm font-semibold text-white">{model.name}</span>
+                <span className="text-[10px] font-mono font-semibold text-brand-orange bg-brand-orange/10 border border-brand-orange/20 rounded-full px-2.5 py-0.5 uppercase tracking-wider">
+                  {model.category}
+                </span>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-[#0E1424] rounded-lg px-3 py-2">
+                  <div className="text-[10px] font-mono text-gray-500 uppercase tracking-wider mb-0.5">1M Input</div>
+                  <div className="text-sm text-gray-200 font-mono font-medium">{model.inputPrice}</div>
+                </div>
+                <div className="bg-[#0E1424] rounded-lg px-3 py-2">
+                  <div className="text-[10px] font-mono text-gray-500 uppercase tracking-wider mb-0.5">1M Output</div>
+                  <div className="text-sm text-gray-200 font-mono font-medium">{model.outputPrice}</div>
+                </div>
+              </div>
+            </div>
+          ))}
         </motion.div>
 
         {/* CTA */}
