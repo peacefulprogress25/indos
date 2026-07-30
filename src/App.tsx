@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import PlatformMetrics from "./components/PlatformMetrics";
 import IndiaStack from "./components/IndiaStack";
 import WhoWeBuildFor from "./components/WhoWeBuildFor";
 import PricingSection from "./components/PricingSection";
@@ -69,6 +70,8 @@ export default function App() {
           onNavClick={handleNavClick}
           onOpenAuth={() => setIsAuthOpen(true)}
         />
+
+        <PlatformMetrics />
 
         <IndiaStack />
 
