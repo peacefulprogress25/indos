@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/agent/:path*",
+      "destination": "https://indos-app-indos.up.railway.app/agent/:path*"
+    }
+  ]
+}
